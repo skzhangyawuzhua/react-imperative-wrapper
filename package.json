@@ -1,0 +1,33 @@
+{
+  "name": "react-imperative-wrapper",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/WrapperComponent.js",
+  "types": "dist/WrapperComponent.d.ts",
+  "files": [
+    "/dist"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rm -rf ./dist && node ./esbuild.js && tsc -p ./tsconfig.json",
+    "webpack_build": "export NODE_ENV=production && webpack --config webpack.config.js"
+  },
+  "author": "skzhangyawuzhua",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/react": "18.2.0",
+    "@types/react-dom": "18.2.0",
+    "esbuild": "^0.18.3",
+    "typescript": "^5.1.3"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app"
+    ]
+  },
+  "dependencies": {
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-scripts": "^5.0.1"
+  }
+}
