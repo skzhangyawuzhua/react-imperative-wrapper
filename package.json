@@ -1,6 +1,6 @@
 {
   "name": "react-imperative-wrapper",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "dist/WrapperComponent.js",
   "types": "dist/WrapperComponent.d.ts",
