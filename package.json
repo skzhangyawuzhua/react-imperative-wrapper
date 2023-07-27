@@ -10,7 +10,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rm -rf ./dist && node ./esbuild.js && tsc -p ./tsconfig.json",
-    "webpack_build": "export NODE_ENV=production && webpack --config webpack.config.js"
+    "webpack_build": "export NODE_ENV=production && webpack --config webpack.config.js",
+    "pub": "npm version patch && git push && npm publish"
   },
   "author": "skzhangyawuzhua",
   "license": "ISC",
