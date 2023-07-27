@@ -1,39 +1,14 @@
-import React, {
-  ReactElement,
-  ReactNode,
-  useImperativeHandle,
-  useReducer,
-  useState,
-} from "react";
-// import ReactDOM from "react-dom";
+import React, { ReactElement } from "react";
 import { createRoot } from "react-dom/client";
 
-type WrapperHandler = {
+type refType = {
   close: (arg: any) => void;
 };
-// const Fn = () => {
-//   function reducer(state: s, action: t) {
-//     switch (action.type) {
-//       case "increment":
-//         return { count: state.count + 1 };
-//       case "decrement":
-//         return { count: state.count - 1 };
-//       default:
-//         throw new Error();
-//     }
-//   }
-
-//   const [state, dispatch] = useReducer(reducer, { count: 2 });
-
-//   return (
-//     <div onClick={() => dispatch({ type: "increment" })}>{state.count}</div>
-//   );
-// };
 
 export function RenderEl(El: ReactElement, resolve: (val: any) => void) {
   const container = document.createElement("div");
 
-  container.id = "lib-container";
+  container.setAttribute("id", "imperative-component");
 
   document.body.append(container);
 
@@ -44,42 +19,13 @@ export function RenderEl(El: ReactElement, resolve: (val: any) => void) {
     root.unmount();
   };
 
-  // const ElCom = React.cloneElement(<El />, {
-  //   close,
-  // });
-
-  // const El2 = El.bind(this);
-
-  // console.log(El.prototype);
-
-  const Wrapper = React.forwardRef<WrapperHandler>((_, ref) => {
-    const [elToRender, setData] = useState(El);
-
-    const onClose = (arg: any) => {
-      resolve(arg);
-      root.unmount();
-    };
-
-    useImperativeHandle(ref, () => {
-      return {
-        close: onClose,
-      };
-    });
-
-    //@ts-ignore
-    return React.cloneElement(elToRender, {});
+  const ImperativeWrap = React.forwardRef<refType>((_, ref) => {
+    return React.cloneElement(El, { close });
   });
 
-  const wrapperRef = React.createRef<WrapperHandler>();
-
-  //@ts-ignore
-  // ReactDOM.render(<Wrapper ref={wrapperRef} />, container);
-
-  // root.render(<Wrapper ref={wrapperRef} />);
-  root.render(<Wrapper ref={wrapperRef} />);
+  root.render(<ImperativeWrap />);
 }
 
-// El: React.FC
 export const WaitableWrapper = (El: ReactElement) => {
   return new Promise(resolve => {
     RenderEl(El, resolve);

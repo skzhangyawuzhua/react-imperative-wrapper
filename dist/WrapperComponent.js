@@ -1,33 +1,19 @@
 // src/WrapperComponent.tsx
-import React, {
-  useImperativeHandle,
-  useState
-} from "react";
+import React from "react";
 import { createRoot } from "react-dom/client";
 function RenderEl(El, resolve) {
   const container = document.createElement("div");
-  container.id = "lib-container";
+  container.setAttribute("id", "imperative-component");
   document.body.append(container);
   const root = createRoot(container);
   const close = (arg) => {
     resolve(arg);
     root.unmount();
   };
-  const Wrapper = React.forwardRef((_, ref) => {
-    const [elToRender, setData] = useState(El);
-    const onClose = (arg) => {
-      resolve(arg);
-      root.unmount();
-    };
-    useImperativeHandle(ref, () => {
-      return {
-        close: onClose
-      };
-    });
-    return React.cloneElement(elToRender, {});
+  const ImperativeWrap = React.forwardRef((_, ref) => {
+    return React.cloneElement(El, { close });
   });
-  const wrapperRef = React.createRef();
-  root.render(/* @__PURE__ */ React.createElement(Wrapper, { ref: wrapperRef }));
+  root.render(/* @__PURE__ */ React.createElement(ImperativeWrap, null));
 }
 var WaitableWrapper = (El) => {
   return new Promise((resolve) => {
