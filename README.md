@@ -19,3 +19,5 @@
     //CustomComponent 中只需要调用 props.close('任意结果') 即可返回结果并销毁
 
 ```
+### 在线示例
+    https://codesandbox.io/p/github/skzhangyawuzhua/imperative-wrapper-demo/
