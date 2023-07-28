@@ -5,7 +5,7 @@ esbuild
     entryPoints: ["./src/WrapperComponent.tsx"],
     outdir: "dist",
     bundle: true,
-    minify: false,
+    minify: true,
     // splitting: true,
     format: "esm",
     external: ["react", "react-dom"],
